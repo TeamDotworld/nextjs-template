@@ -1,41 +1,36 @@
 import { Layout, Menu } from "antd";
 import _ from "lodash";
-import { ReactNode, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { decodePayload } from "../utils/auth";
-import { Link, useLocation } from "react-router-dom";
-// import { Link } from "react-router-dom";
-import { MenuList } from "../index";
-
+import { Children, ReactChild, ReactNode, useEffect, useState } from "react";
+import { AuthContext } from "../pages/contexts/AuthContext";
+import { decodePayload } from "../pages/utils/auth";
+import { MenuList } from "../pages/index";
+import Link from "next/link";
 const { Header, Content, Sider } = Layout;
-// import { withRouter } from "next/router";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Props {
   needSider: boolean | true;
-  children: ReactNode;
   menuList: MenuList[];
+  children: ReactChild;
 }
 
 function SiderDemo(props: Props) {
-  const location = useLocation();
   const router = useRouter();
-  console.log("location", location);
-  console.log("router", router);
-  // const router = useRouter();
   const [selectedKey, setSelectedKey] = useState(
-    props.menuList.find((_item) => location.pathname.startsWith(_item.route))
-      ?.key
+    props.menuList.find((_item) => router.pathname.startsWith(_item.route))?.key
   );
+
   useEffect(() => {
     setSelectedKey(
-      props.menuList.find((_item) => location.pathname.startsWith(_item.route))
+      props.menuList.find((_item) => router.pathname.startsWith(_item.route))
         ?.key
     );
-  }, []);
+  }, [router.query]);
+
   const logOut = () => {
     localStorage.clear();
-    global.window.location.href = "/";
+    // global.window.location.href = "/";
   };
   return (
     <AuthContext.Consumer>
@@ -43,6 +38,15 @@ function SiderDemo(props: Props) {
         <Layout>
           {is_authenticated && (
             <Sider width="200" theme="light" trigger={null} breakpoint="sm">
+              <div className={`mt-6 text-center`}>
+                <Image
+                  src="/favicon.ico"
+                  className="h-12 mt-4 w-full object-scale-down"
+                  alt="Vercel Logo"
+                  width={122}
+                  height={36}
+                />
+              </div>
               <Menu
                 className={`mt-6`}
                 theme="light"
@@ -55,7 +59,7 @@ function SiderDemo(props: Props) {
                       className={`flex items-center place-content-left`}
                       key={value.key}
                     >
-                      <Link to={value.route}>
+                      <Link href={value.route}>
                         {_.startCase(_.camelCase(value.key))}
                       </Link>
                     </Menu.Item>
@@ -66,9 +70,9 @@ function SiderDemo(props: Props) {
           )}
           <Layout className={`gradient-bg h-screen overflow-y-auto`}>
             {is_authenticated && (
-              <Header className={`gradient-bg px-8 flex my-4`}>frg</Header>
+              <Header className={`gradient-bg px-8 flex my-4`}></Header>
             )}
-            <Content className={`${is_authenticated ? "p-6" : "p-0"}`}>
+            <Content className={`${is_authenticated ? "p-0" : "p-6"}`}>
               {props.children}
             </Content>
           </Layout>

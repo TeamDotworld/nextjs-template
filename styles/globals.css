@@ -18,3 +18,8 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* antd styles */
+.ant-layout-header {
+  background-color: #fff !important;
+}

@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
-import { useEffect } from "react";
-import { getPk } from "../services/auth";
+
 
 export interface IPayload {
 	id: string;
@@ -10,11 +9,6 @@ export interface IPayload {
 
 export function isAuthenticated(): boolean {
 	if (typeof window !== "undefined") {
-		// browser code
-		// console.log(window)
-		// let pkvalue:string
-		// let localpkvalue = window.localStorage.setItem("pk",pkvalue);
-		
 		let pk = localStorage.getItem("pk");
 			let access_token = localStorage.getItem("access_token");
 	
@@ -27,7 +21,9 @@ export function isAuthenticated(): boolean {
 			if (data) return true;
 
 			return false;
-		} else return false
+	}
+	else return false
+
 }
 
 export function decodePayload(): IPayload | null {

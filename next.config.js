@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: true,
+  env: {
+    REACT_APP_API_HOST: process.env.REACT_APP_API_HOST,
+  },
 };
 
 module.exports = nextConfig;

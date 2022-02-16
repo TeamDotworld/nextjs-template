@@ -4,12 +4,13 @@ import { withRouter } from "next/router";
 import { Formik, Field, Form } from "formik";
 import { notification } from "antd";
 import { useRouter } from "next/router";
+
 import {
   LoginParamsType,
   loginApi,
   getPk,
   exchangeMagicToken,
-} from "../services/auth";
+} from "./api/auth";
 import ForgotPassword from "../components/ForgotPassword";
 
 export type LoginProps = {
@@ -18,9 +19,7 @@ export type LoginProps = {
 
 const LoginPage: React.FC<LoginProps> = () => {
   const router = useRouter();
-  const location = useLocation();
-  const useQuery = () => new URLSearchParams(location.pathname);
-  // const useQuery = () => new URLSearchParams(withRouter);
+  const useQuery = () => new URLSearchParams(router.pathname);
   console.log(router.pathname);
   let query = useQuery();
 
@@ -52,8 +51,7 @@ const LoginPage: React.FC<LoginProps> = () => {
       console.log(key.data);
       localStorage.setItem("pk", key.data);
 
-      // global.window.location.href = "/";
-      window.location.href = "/";
+      window.location.href = "/home";
     } else {
       notification.error({
         message: "Unable to login",
@@ -73,7 +71,7 @@ const LoginPage: React.FC<LoginProps> = () => {
       let key = await getPk(token);
       localStorage.setItem("pk", key.data);
 
-      // global.window.location.href = "/";
+      global.window.location.href = "/";
     } else {
       notification.error({
         message: "Unable to login",

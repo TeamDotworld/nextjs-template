@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Field, Form, FormikHelpers } from "formik";
-import { sendResetEmailLink } from "../services/auth";
+import { sendResetEmailLink } from "../pages/api/auth";
 
 interface IProps {
   setForgotPass: () => void;

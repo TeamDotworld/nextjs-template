@@ -1,8 +1,13 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+
+
+
 import request from "../utils/request";
 
-// const { REACT_APP_API_HOST: HOST } = process.env;
 
-const HOST = "http://192.168.1.174:8000";
+const HOST = process.env.REACT_APP_API_HOST;
 
 export interface LoginParamsType {
 	email: string;
@@ -10,6 +15,7 @@ export interface LoginParamsType {
 }
 
 export async function loginApi({ email, password }: LoginParamsType) {
+	console.log(process.env.REACT_APP_API_HOST);
 	return request(`${HOST}/api/v1/auth`, {
 		method: "POST",
 		data: {
@@ -60,5 +66,4 @@ export function verifyAttestation(data: object) {
 		},
 		data: JSON.stringify(data)
 	})
-	// localStorage.setItem("access_token",access_token)
 }
