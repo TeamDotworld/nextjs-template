@@ -25,7 +25,6 @@ const ForgotPassword = ({ setForgotPass }: IProps) => {
   };
 
   const handleSubmit = (value: IValue, actions: FormikHelpers<IValue>) => {
-    console.log(value);
     sendResetEmailLink(value.email);
     setShowMessage(true);
   };

@@ -20,7 +20,6 @@ export type LoginProps = {
 const LoginPage: React.FC<LoginProps> = () => {
   const router = useRouter();
   const useQuery = () => new URLSearchParams(router.pathname);
-  console.log(router.pathname);
   let query = useQuery();
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const LoginPage: React.FC<LoginProps> = () => {
     if (token) {
       magicTokenLogin(token);
     }
-    console.log(query.get("token"));
   });
 
   const [forgotPass, setForgotPass] = useState<boolean>(false);
@@ -39,7 +37,6 @@ const LoginPage: React.FC<LoginProps> = () => {
 
   const magicTokenLogin = async (token: string) => {
     let resp = await exchangeMagicToken(token);
-    console.log(token);
     if (resp?.status && resp?.data) {
       let {
         data: { token, user },
@@ -48,7 +45,6 @@ const LoginPage: React.FC<LoginProps> = () => {
       localStorage.setItem("access_token", token);
 
       let key = await getPk(token);
-      console.log(key.data);
       localStorage.setItem("pk", key.data);
 
       window.location.href = "/home";

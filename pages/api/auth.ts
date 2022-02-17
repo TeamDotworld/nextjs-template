@@ -16,7 +16,6 @@ export interface LoginParamsType {
 }
 
 export async function loginApi({ email, password }: LoginParamsType) {
-	console.log(process.env.REACT_APP_API_HOST);
 	return request(`${HOST}/api/v1/auth`, {
 		method: "POST",
 		data: {
