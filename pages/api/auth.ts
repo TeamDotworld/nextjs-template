@@ -35,8 +35,11 @@ export function getPk(access_token: string) {
 }
 
 export function sendResetEmailLink(email: string) {
-	return request(`${HOST}/api/v1/auth/magic?email=${email}`, {
-		method: "GET"
+	return request(`${HOST}/api/v1/auth/reset`, {
+		method: "POST",
+		data: {
+			email
+		}
 	})
 }
 
