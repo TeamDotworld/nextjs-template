@@ -177,7 +177,7 @@ const LoginPage: React.FC<LoginProps> = () => {
                   toggleForgotPass();
                 }}
               >
-                Forgot
+                Forgot Password?
               </a>
             </div>
           ) : (

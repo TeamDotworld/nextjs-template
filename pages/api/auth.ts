@@ -4,7 +4,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 
-import request from "../utils/request";
+import request from "../../utils/request";
+
 
 
 const HOST = process.env.REACT_APP_API_HOST;

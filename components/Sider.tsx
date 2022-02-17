@@ -1,8 +1,8 @@
 import { Layout, Menu } from "antd";
 import _ from "lodash";
 import { Children, ReactChild, ReactNode, useEffect, useState } from "react";
-import { AuthContext } from "../pages/contexts/AuthContext";
-import { decodePayload } from "../pages/utils/auth";
+import { AuthContext } from "../contexts/AuthContext";
+import { decodePayload } from "../utils/auth";
 import { MenuList } from "../pages/index";
 import Link from "next/link";
 const { Header, Content, Sider } = Layout;

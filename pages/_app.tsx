@@ -6,7 +6,7 @@ import Sider from "../components/Sider";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Home from "./home";
-import { isAuthenticated } from "./utils/auth";
+import { isAuthenticated } from "../utils/auth";
 import { useEffect } from "react";
 
 export type MenuList = {

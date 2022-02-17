@@ -1,7 +1,5 @@
 import { Component, ReactNode } from "react";
 import { HomeFilled } from "@ant-design/icons";
-import Sider from "../components/Sider";
-import { isAuthenticated } from "./utils/auth";
 import { useRouter } from "next/router";
 import {
   Redirect,
@@ -14,7 +12,6 @@ import {
 } from "react-router-dom";
 import { rest } from "lodash";
 import React from "react";
-import { History } from "history";
 import { createMemoryHistory } from "history";
 import Home from "./home";
 import "antd/dist/antd.css";
