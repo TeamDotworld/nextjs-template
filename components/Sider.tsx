@@ -72,7 +72,8 @@ function SiderDemo(props: Props) {
             {is_authenticated && (
               <Header className={`gradient-bg px-8 flex my-4`}></Header>
             )}
-            <Content className={`${is_authenticated ? "p-0" : "p-6"}`}>
+
+            <Content className={`${is_authenticated ? "p-6" : "p-0"}`}>
               {props.children}
             </Content>
           </Layout>
